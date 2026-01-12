@@ -1,0 +1,116 @@
+body {
+  background: #e6e6e6;
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+.top-bar {
+  background: #dedede;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.top-bar h1 {
+  color: #f97316;
+}
+
+.tax-box {
+  background: #f97316;
+  padding: 10px 20px;
+  border-radius: 30px;
+  color: white;
+}
+
+.tax-box input {
+  width: 60px;
+  border-radius: 20px;
+  border: none;
+  padding: 5px;
+  margin-left: 10px;
+}
+
+.main {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+.invoice-card {
+  flex: 3;
+  background: #f7eeee;
+  padding: 25px;
+  border-radius: 30px;
+}
+
+.total-card {
+  flex: 1;
+  background: #f7eeee;
+  padding: 25px;
+  border-radius: 30px;
+}
+
+/* Two-column form layout */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  /* 👇 THIS creates the gap you marked in green */
+  column-gap: 30px;
+
+  /* vertical spacing between rows */
+  row-gap: 16px;
+}
+
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+}
+
+.items-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+button {
+  background: #f97316;
+  color: black;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #ea580c;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 10px;
+  text-align: center;
+}
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.pdf-btn {
+  width: 100%;
+  margin-top: 30px;
+}

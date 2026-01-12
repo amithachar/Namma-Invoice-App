@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+
+<form method="post" action="/login">
+    <h2>Welcome to Namma Invoice App</h2>
+
+    <input name="username" placeholder="Username" required>
+    <br><br>
+
+    <input name="password" type="password" placeholder="Password" required>
+    <br><br>
+
+    <button type="submit">Login</button>
+
+    <p style="color:red">
+        <script>
+            if (window.location.search.includes("error")) {
+                document.write("Invalid username or password");
+            }
+        </script>
+    </p>
+</form>
+
+</body>
+</html>

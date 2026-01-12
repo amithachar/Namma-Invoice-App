@@ -1,0 +1,11 @@
+com\invoice\controller\AuthController.class
+com\invoice\service\PdfService.class
+com\invoice\model\Invoice.class
+com\invoice\model\SkuDto.class
+com\invoice\service\InvoiceService.class
+com\invoice\model\InvoiceItem.class
+com\invoice\controller\DashboardController.class
+com\invoice\model\LoginRequest.class
+com\invoice\service\SkuService.class
+com\invoice\controller\InvoiceController.class
+com\invoice\InvoiceApplication.class

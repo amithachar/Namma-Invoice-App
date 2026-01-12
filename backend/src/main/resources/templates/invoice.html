@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Namma Invoice App</title>
+  <link rel="stylesheet" href="/css/theme.css">
+  <script src="/js/invoice.js" defer></script>
+</head>
+<body>
+
+<header class="top-bar">
+  <h1>Namma Invoice App</h1>
+
+  <div class="tax-box">
+    <label>Tax Rate :</label>
+    <input id="taxRate" type="number" value="0">
+  </div>
+</header>
+
+<div class="main">
+
+  <!-- LEFT PANEL -->
+  <div class="invoice-card">
+
+    <div class="grid-2">
+      <div>
+        <label>Bill To</label>
+        <input id="billTo">
+      </div>
+      <div>
+        <label>Sold To</label>
+        <input id="soldTo">
+      </div>
+
+      <div>
+        <label>GST Number</label>
+        <input id="gst">
+      </div>
+      <div>
+        <label>Sales Person</label>
+        <input id="sales">
+      </div>
+
+      <div>
+        <label>PO Number</label>
+        <input id="po">
+      </div>
+      <div>
+        <label>Date</label>
+        <input id="date" type="date">
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="items-bar">
+      <select id="sku"></select>
+      <input id="qty" type="number" placeholder="Qty">
+      <button onclick="addItem()">Add Item</button>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>SKU</th>
+          <th>Item</th>
+          <th>Qty</th>
+          <th>Price</th>
+          <th>Total</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="items"></tbody>
+    </table>
+
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="total-card">
+    <h3>Total Preview</h3>
+
+    <div class="total-row">
+      <span>Total</span>
+      <span id="subTotal">0</span>
+    </div>
+
+    <div class="total-row">
+      <span>Tax</span>
+      <span id="taxAmt">0</span>
+    </div>
+
+    <div class="total-row bold">
+      <span>Total Amount</span>
+      <span id="grandTotal">0</span>
+    </div>
+
+    <button class="pdf-btn" onclick="generatePDF()">Generate PDF</button>
+  </div>
+
+</div>
+
+</body>
+</html>
