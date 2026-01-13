@@ -1,5 +1,5 @@
-pipeline{
-    agent any // decided which node to run
+pipeline {
+    agent any
 
     tools {
         jdk 'java-17'
@@ -7,57 +7,58 @@ pipeline{
     }
 
     environment {
-        IMAGE_NAME = "amithachar/Namma-Invoice-App:${GIT_COMMIT}"
+        IMAGE_NAME = "amithachar/namma-invoice-app:${GIT_COMMIT}"
     }
 
-    stages{
-        stage('git-checkout'){
-            steps{
+    stages {
+
+        stage('Git Checkout') {
+            steps {
                 git url: 'https://github.com/amithachar/Namma-Invoice-App.git', branch: 'main'
             }
-            
         }
 
-        stage('Compile'){
-            steps{
-                sh '''
-                    mvn compile
-                '''
+        stage('Compile') {
+            steps {
+                sh 'mvn compile'
             }
         }
-        stage('packaging'){
-            steps{
-                sh '''
-                    mvn clean package
-                '''
+
+        stage('Package') {
+            steps {
+                sh 'mvn clean package'
             }
         }
-        stage('docker-build'){
-            steps{
+
+        stage('Docker Build') {
+            steps {
                 sh '''
-                    printenv
+                    echo "Building Docker image: ${IMAGE_NAME}"
                     docker build -t ${IMAGE_NAME} .
                 '''
             }
-        } 
+        }
 
         stage('Login to Docker Hub') {
             steps {
-                script {
-                    withCredentials([usernamePassword(credentialsId: 'docker-hub-creds', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-                        // Login to Docker Hub
-                        sh "echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin"
-                    }
+                withCredentials([
+                    usernamePassword(
+                        credentialsId: 'docker-hub-creds',
+                        usernameVariable: 'DOCKER_USERNAME',
+                        passwordVariable: 'DOCKER_PASSWORD'
+                    )
+                ]) {
+                    sh '''
+                        echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+                    '''
                 }
-            }
-        }  
-
-        stage('Push to dockerhub'){
-            steps{
-                sh '''
-                    docker push ${IMAGE_NAME}
-                '''
             }
         }
 
-        
+        stage('Push to Docker Hub') {
+            steps {
+                sh 'docker push ${IMAGE_NAME}'
+            }
+        }
+    }
+}
