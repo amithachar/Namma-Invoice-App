@@ -20,22 +20,28 @@ pipeline {
 
         stage('Compile') {
             steps {
-                sh 'mvn compile'
+                dir('backend') {
+                    sh 'mvn clean compile'
+                }
             }
         }
 
         stage('Package') {
             steps {
-                sh 'mvn clean package'
+                dir('backend') {
+                    sh 'mvn clean package -DskipTests'
+                }
             }
         }
 
         stage('Docker Build') {
             steps {
-                sh '''
-                    echo "Building Docker image: ${IMAGE_NAME}"
-                    docker build -t ${IMAGE_NAME} .
-                '''
+                dir('backend') {
+                    sh '''
+                        echo "Building Docker image: ${IMAGE_NAME}"
+                        docker build -t ${IMAGE_NAME} .
+                    '''
+                }
             }
         }
 
@@ -57,7 +63,11 @@ pipeline {
 
         stage('Push to Docker Hub') {
             steps {
-                sh 'docker push ${IMAGE_NAME}'
+                sh '''
+                    docker push ${IMAGE_NAME}
+                    docker tag ${IMAGE_NAME} amithachar/namma-invoice-app:latest
+                    docker push amithachar/namma-invoice-app:latest
+                '''
             }
         }
     }
